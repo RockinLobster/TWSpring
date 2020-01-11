@@ -1,4 +1,4 @@
-package com.TWResources.Journal;
+package com.tw3.Journal;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

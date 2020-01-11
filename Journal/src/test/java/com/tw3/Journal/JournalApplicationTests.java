@@ -1,4 +1,4 @@
-package com.TWResources.Journal;
+package com.tw3.Journal;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
