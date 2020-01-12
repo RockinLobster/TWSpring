@@ -1,10 +1,10 @@
-package com.tw3.Journal;
+package com.example.tema3.tema3;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class JournalApplicationTests {
+class Tema3ApplicationTests {
 
 	@Test
 	void contextLoads() {

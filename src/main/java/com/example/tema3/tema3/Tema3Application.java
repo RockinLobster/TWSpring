@@ -1,13 +1,13 @@
-package com.tw3.Journal;
+package com.example.tema3.tema3;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JournalApplication {
+public class Tema3Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JournalApplication.class, args);
+		SpringApplication.run(Tema3Application.class, args);
 	}
 
 }
