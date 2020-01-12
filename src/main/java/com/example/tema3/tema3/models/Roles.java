@@ -18,11 +18,14 @@ public class Roles {
     @Column(name = "roles_id")
     private Long id;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @Column(name = "role_name")
+    private String name;
+
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(name = "rights_roles",joinColumns = { @JoinColumn(name = "roles_id") }, inverseJoinColumns = { @JoinColumn(name = "rights_id")} )
     private Set<Rights> rights = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(name = "resources_roles",joinColumns = { @JoinColumn(name = "roles_id") }, inverseJoinColumns = { @JoinColumn(name = "resources_id")} )
     private Set<Resources> resources = new HashSet<>();
 
@@ -50,10 +53,20 @@ public class Roles {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
     @Override
     public String toString() {
         return "Roles{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
                 ", rights=" + rights +
                 ", resources=" + resources +
                 '}';
