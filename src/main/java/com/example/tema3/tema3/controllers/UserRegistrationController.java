@@ -36,11 +36,11 @@ public class UserRegistrationController {
         Users existing = userService.findByUsername(userDto.getUsername());
 
         if(existing != null){
-            result.rejectValue("username",null,"There is someone with this username already");
+            return "redirect:/registration?existing";
         }
 
         if(result.hasErrors()){
-            return "registration";
+            return "redirect:/registration?error";
         }
 
         userService.save(userDto);

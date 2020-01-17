@@ -7,15 +7,44 @@
 </head>
 <body>
 
-<button sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></button>
+<button><a th:href="@{/logout}">Logout</a></button>
+<button><a th:href="@{/admin}">Admin</a></button>
+
+<div th:if="${param.successCreating}">
+    <div class="alert alert-danger">Created Resource.
+    </div>
+</div>
+
+<div th:if="${param.errorCreating}">
+    <div class="alert alert-danger">Failed to create a resource.
+    </div>
+</div>
 
 <div class="container">
-    <h2>User Registration and Login Module using Spring Boot, Spring MVC, Spring Security, JPA/Hibernate and Thymeleaf</h2>
-
-    <p>
-        Welcome <span sec:authentication="principal.username">User</span>
-    </p>
+    <h2>Welcome <span th:text="${#authentication.getPrincipal().getUsername()}"></span></h2>
 </div>
+
+My Files: <br>
+<table>
+    <th:block th:each="resource:${resources}">
+        <tr>
+            <td th:text="${resource.id}"/>
+            <td th:text="${resource.name}"/>
+            <td>
+                <form th:action="@{initiateEdit/} + ${resource.id}" method="post">
+                    <input type="submit" value="Edit">
+                </form>
+            </td>
+        </tr>
+    </th:block>
+</table>
+<br>
+<form th:action="@{createResource}" th:object="${resourceDto}" method="post">
+    <div class="form-group">
+        <label for="name">File Name</label>: <input th:type="text" id="name" name="name" class="form-control"/>
+    </div>
+    <input type="submit" name="create" value="Create File">
+</form>
 
 
 <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>

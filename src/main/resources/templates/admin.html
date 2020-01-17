@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/>/www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+</head>
+<body>
+<button ><a th:href="@{/logout}">Logout</a></button>
+<button ><a th:href="@{/home}">Home</a> </button>
+<br>
+All Users <br>
+<table>
+    <th:block th:each="user:${users}">
+        <tr>
+            <td th:text="${user.id}"/>
+            <td th:text="${user.username}"/>
+        </tr>
+    </th:block>
+</table>
+<br>
+All Resources <br>
+<table>
+
+    <th:block th:each="resource:${resources}">
+        <tr>
+            <td th:text="${resource.id}"/>
+            <td th:text="${resource.name}"/>
+        </tr>
+    </th:block>
+</table>
+
+
+
+</body>
+</html>

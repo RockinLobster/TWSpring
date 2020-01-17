@@ -1,39 +1,30 @@
 package com.example.tema3.tema3.controllers;
 
+import com.example.tema3.tema3.Util.ResourceDto;
+import com.example.tema3.tema3.repository.ResourcesRepository;
 import com.example.tema3.tema3.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class MainController {
+public class AdminController {
     @Autowired
     private UsersRepository usersRepository;
+    @Autowired
+    private ResourcesRepository resourcesRepository;
 
     private void composeModelAttributes(ModelAndView model) {
-        model.addObject("resources", usersRepository.findByUsername(UserController.currentUserName()).getResources());
+        model.addObject("users", usersRepository.findAll());
+        model.addObject("resources", resourcesRepository.findAll());
     }
 
-    @GetMapping(value={"/home"})
-    public ModelAndView homePage(){
+    @GetMapping(value={"/admin"})
+    public ModelAndView adminPage(){
         ModelAndView model = new ModelAndView();
-        model.setViewName("home");
+        model.setViewName("admin");
         composeModelAttributes(model);
         return model;
     }
-
-
-    @GetMapping("/")
-    public String root() {
-        return "redirect:/home";
-    }
-
-    @GetMapping("login")
-    public String login(Model model) {
-        return "login";
-    }
-
-
 }

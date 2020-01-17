@@ -10,9 +10,9 @@ import java.util.Set;
 @Table(name = "users")
 public class Users {
 
-   @Id
-   @GeneratedValue
-   @Column(name = "user_id")
+    @Id
+    @GeneratedValue
+    @Column(name = "user_id")
     private Long id;
 
     @Column
@@ -21,9 +21,13 @@ public class Users {
     @Column
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinTable(name = "user_roles",joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "roles_id")} )
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_roles", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "roles_id")})
     private Set<Roles> roles = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_resources", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "resources_id")})
+    private Set<Resources> resources = new HashSet<>();
 
     public Users() {
     }
@@ -34,7 +38,7 @@ public class Users {
 //        this.password = password;
 //    }
 
-    public Users( String username, String password) {
+    public Users(String username, String password) {
         this.username = username;
         this.password = password;
     }
@@ -69,6 +73,18 @@ public class Users {
 
     public void setRoles(Set<Roles> roles) {
         this.roles = roles;
+    }
+
+    public Set<Resources> getResources() {
+        return resources;
+    }
+
+    public void setResources(Set<Resources> resources) {
+        this.resources = resources;
+    }
+
+    public void addResource(Resources resource){
+        resources.add(resource);
     }
 
 //    @Override
