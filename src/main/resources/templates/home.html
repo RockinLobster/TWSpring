@@ -34,6 +34,9 @@ My Files: <br>
                 <form th:action="@{initiateEdit/} + ${resource.id}" method="post">
                     <input type="submit" value="Edit">
                 </form>
+                <form th:action="@{deleteResource/} + ${resource.id}" method="post">
+                    <input type="submit" value="Delete">
+                </form>
             </td>
         </tr>
     </th:block>

@@ -34,4 +34,11 @@ public class ResourceService {
 
         return resourceRepository.save(resource.get());
     }
+
+    public void  delete(String id){
+        Optional<Resources> resource = resourceRepository.findById(Long.parseLong(id));
+        Users user = usersRepository.findByUsername(UserController.currentUserName());
+        user.getResources().remove(resource.get());
+        resourceRepository.delete(resource.get());
+    }
 }

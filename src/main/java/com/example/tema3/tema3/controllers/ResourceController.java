@@ -67,6 +67,12 @@ public class ResourceController {
         return model;
     }
 
+    @PostMapping(value = {"/deleteResource/{id}"})
+    public String deleteResource(@PathVariable(value = "id") String id){
+        resourceService.delete(id);
+        return "redirect:/home";
+    }
+
     @PostMapping(value = {"/editResource"})
     public String editResource(@ModelAttribute("resourceDto") @Valid ResourceDto resourceDto, BindingResult result, Model model) {
         if (result.hasErrors()) {

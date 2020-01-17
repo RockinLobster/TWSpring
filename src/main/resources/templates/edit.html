@@ -5,14 +5,16 @@
     <title>Edit</title>
 </head>
 <body>
-<form th:action="@{/editResource}" th:object="${resourceDto}"  method="post">
-    <div style="width: 500px; height: 400px;">
+<form th:action="@{/editResource}" th:object="${resourceDto}" method="post">
+        <div th:object="${resource}">
+            <h1 th:inline="text">
+                <div style="width: 500px; height: 400px;">
         <textarea th:type="text" id="resourceText" name="resourceText" style="width: 100%; height: 100%;">
-            <div th:object="${resource}">
-                <span th:text="${resource.text}"></span>
-            </div>
+            [[${resource.text}]]
         </textarea>
-    </div>
+                </div>
+            </h1>
+        </div>
     <br>
     <input type="submit" value="Submit"/>
 </form>
